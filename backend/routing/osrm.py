@@ -10,13 +10,12 @@ from typing import Any
 
 import httpx
 
+from backend.routing.models import LonLat
+
 OSRM_BASE_URL = "https://router.project-osrm.org"
 OSRM_PROFILE = "driving"
 METERS_PER_KM = 1000
 SECONDS_PER_MINUTE = 60
-
-# Koordinat dalam urutan GeoJSON: (lon, lat).
-LonLat = tuple[float, float]
 
 
 @dataclass(frozen=True)

@@ -2,7 +2,7 @@
 
 from dataclasses import replace
 
-from backend.routing.models import Edge, Itinerary, Leg, SearchState
+from backend.routing.models import Edge, Itinerary, Leg, LonLat, SearchState
 from backend.routing.weights import (
     TripContext,
     pending_krl_fare,
@@ -18,6 +18,16 @@ def _continues_last_leg(legs: list[Leg], edge: Edge) -> bool:
         return False
     last = legs[-1]
     return last.mode == edge.mode and last.route_id == edge.route_id
+
+
+def _join_geometry(
+    first: tuple[LonLat, ...] | None, second: tuple[LonLat, ...] | None
+) -> tuple[LonLat, ...] | None:
+    """Sambung dua jalur. Bila salah satu tidak punya jalur asli, hasilnya None
+    (klien lalu menggambar garis lewat halte-halte di `stop_ids`)."""
+    if first is None or second is None:
+        return None
+    return first + second
 
 
 def build_itinerary(edges: list[Edge], start_stop: str, trip: TripContext) -> Itinerary:
@@ -46,6 +56,8 @@ def build_itinerary(edges: list[Edge], start_stop: str, trip: TripContext) -> It
                 to_stop=edge.to_stop,
                 distance_km=last.distance_km + edge.distance_km,
                 ride_min=last.ride_min + ride,
+                stop_ids=(*last.stop_ids, edge.to_stop),
+                geometry=_join_geometry(last.geometry, edge.geometry),
             )
         else:
             legs.append(
@@ -57,6 +69,8 @@ def build_itinerary(edges: list[Edge], start_stop: str, trip: TripContext) -> It
                     distance_km=edge.distance_km,
                     wait_min=wait,
                     ride_min=ride,
+                    stop_ids=(edge.from_stop, edge.to_stop),
+                    geometry=edge.geometry,
                 )
             )
 

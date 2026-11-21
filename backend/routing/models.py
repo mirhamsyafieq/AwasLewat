@@ -15,6 +15,9 @@ DRIVE: Mode = "drive"
 # Moda tanpa kendaraan umum: tidak ada tarif, tidak ada waktu tunggu, route_id None.
 NON_TRANSIT_MODES = frozenset({WALK, DRIVE})
 
+# Koordinat dalam urutan GeoJSON: (lon, lat).
+LonLat = tuple[float, float]
+
 
 @dataclass(frozen=True)
 class Stop:
@@ -32,6 +35,7 @@ class Edge:
     """Satu sisi berarah di graf: segmen kendaraan, jalan kaki, atau akses berkendara.
 
     Untuk jalan kaki dan akses berkendara: `route_id is None`, `headway_min == 0`.
+    `geometry` = jalur jalan asli (dari OSRM) bila ada; None untuk segmen biasa.
     """
 
     from_stop: str
@@ -41,6 +45,7 @@ class Edge:
     distance_km: float
     travel_min: float
     headway_min: float = 0.0
+    geometry: tuple[LonLat, ...] | None = None
 
 
 @dataclass(frozen=True)
@@ -75,7 +80,12 @@ class SearchState:
 
 @dataclass(frozen=True)
 class Leg:
-    """Satu bagian perjalanan: satu kali naik kendaraan, atau satu kali jalan kaki."""
+    """Satu bagian perjalanan: satu kali naik kendaraan, atau satu kali jalan kaki.
+
+    `stop_ids` = semua halte yang dilewati leg ini, dari `from_stop` sampai
+    `to_stop`; dipakai untuk menggambar garis bila `geometry` tidak ada.
+    `geometry` = jalur jalan asli (hanya untuk leg akses dari OSRM), atau None.
+    """
 
     mode: Mode
     route_id: str | None
@@ -84,6 +94,8 @@ class Leg:
     distance_km: float
     wait_min: float
     ride_min: float
+    stop_ids: tuple[str, ...] = ()
+    geometry: tuple[LonLat, ...] | None = None
 
     @property
     def duration_min(self) -> float:

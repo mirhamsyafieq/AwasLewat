@@ -19,7 +19,7 @@ Komuter yang menggabungkan KRL dan Transjakarta harus berpindah-pindah aplikasi 
 | Peta OSM terbatas wilayah Jabodetabek + lokasi pengguna | Direncanakan |
 | Jalur KRL dan koridor Transjakarta dengan warna resmi | Direncanakan |
 | Pencarian jalur, halte, dan tempat umum | Direncanakan |
-| Rute tercepat dan termurah dari titik mana pun | Mesin rute selesai (dengan data uji); endpoint `/route` menyusul |
+| Rute tercepat dan termurah dari titik mana pun | Mesin rute dan endpoint `POST /route` selesai (dengan data uji); menunggu data asli |
 | Rute paling sedikit transit dan paling lengang | Mesin rute selesai (dengan data uji dan tabel kepadatan sementara) |
 | Pengalihan halte naik/turun saat akses macet parah | Logika dan klien OSRM/TomTom selesai (diuji dengan respons tiruan) |
 | Penggabungan hasil rute yang sama menjadi satu kartu | Selesai |

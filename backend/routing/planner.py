@@ -107,6 +107,7 @@ def _access_edge(from_id: str, to_id: str, estimate: AccessEstimate) -> Edge:
         route_id=None,
         distance_km=estimate.distance_km,
         travel_min=estimate.minutes,
+        geometry=estimate.geometry,
     )
 
 
