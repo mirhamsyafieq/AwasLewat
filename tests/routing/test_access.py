@@ -7,9 +7,9 @@ from backend.routing.access import (
     MIN_TRAFFIC_SPEED_KMH,
     ROAD_DETOUR_FACTOR,
     AccessEstimate,
-    HaversineAccessProvider,
     apply_traffic,
     choose_access_mode,
+    haversine_estimate,
     minutes_at_speed,
 )
 from backend.routing.geo import haversine_km
@@ -28,7 +28,7 @@ def test_choose_access_mode_by_distance() -> None:
 
 def test_fallback_walk_access() -> None:
     lat, lon = -6.2000, 106.8050  # ~0,55 km dari STOP
-    estimate = HaversineAccessProvider().estimate(lat, lon, STOP)
+    estimate = haversine_estimate(lat, lon, STOP)
 
     road_km = haversine_km(lat, lon, STOP.lat, STOP.lon) * ROAD_DETOUR_FACTOR
     assert estimate.mode == WALK
@@ -39,7 +39,7 @@ def test_fallback_walk_access() -> None:
 
 def test_fallback_drive_access_marks_traffic_unknown() -> None:
     lat, lon = -6.2000, 106.8150  # ~1,7 km dari STOP
-    estimate = HaversineAccessProvider().estimate(lat, lon, STOP)
+    estimate = haversine_estimate(lat, lon, STOP)
 
     assert estimate.mode == DRIVE
     assert estimate.minutes == pytest.approx(

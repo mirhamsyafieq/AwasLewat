@@ -21,7 +21,7 @@ Komuter yang menggabungkan KRL dan Transjakarta harus berpindah-pindah aplikasi 
 | Pencarian jalur, halte, dan tempat umum | Direncanakan |
 | Rute tercepat dan termurah dari titik mana pun | Mesin rute selesai (dengan data uji); endpoint `/route` menyusul |
 | Rute paling sedikit transit dan paling lengang | Mesin rute selesai (dengan data uji dan tabel kepadatan sementara) |
-| Pengalihan halte naik/turun saat akses macet parah | Logika selesai (dengan data simulasi); klien OSRM/TomTom menyusul |
+| Pengalihan halte naik/turun saat akses macet parah | Logika dan klien OSRM/TomTom selesai (diuji dengan respons tiruan) |
 | Penggabungan hasil rute yang sama menjadi satu kartu | Selesai |
 | Alarm tujuan yang tetap berbunyi saat HP dalam mode senyap | Direncanakan |
 
@@ -113,6 +113,16 @@ ruff format --check .
 ```
 
 Test tidak membutuhkan internet; semua layanan eksternal disimulasikan.
+
+### API key TomTom
+
+Data lalu lintas memakai TomTom Traffic (gratis, daftar di developer.tomtom.com). Simpan key sebagai environment variable, **jangan** ditulis di kode atau di-commit:
+
+```powershell
+$env:TOMTOM_API_KEY = "isi-key-kamu"
+```
+
+Tanpa key, aplikasi tetap berjalan: akses berkendara memakai perkiraan kecepatan tetap dan ditandai "lalu lintas tidak diketahui".
 
 ## Sumber data
 

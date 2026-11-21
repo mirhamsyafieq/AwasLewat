@@ -1,0 +1,3 @@
+# Dependency untuk menjalankan backend.
+# Anggota 1 menambahkan fastapi, uvicorn, pydantic, dll. saat kerangka FastAPI siap.
+httpx==0.28.1

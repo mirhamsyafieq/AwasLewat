@@ -4,6 +4,7 @@ Memakai fixture `jabodetabek_small.json` (koordinat perkiraan, bukan data asli)
 dan akses fallback tanpa jaringan, jadi test tidak pernah memanggil OSRM/TomTom.
 """
 
+import asyncio
 import itertools
 import time
 from dataclasses import dataclass
@@ -13,8 +14,10 @@ import pytest
 
 from backend.routing.access import (
     AccessEstimate,
+    AccessProvider,
     HaversineAccessProvider,
     apply_traffic,
+    haversine_estimate,
 )
 from backend.routing.dedupe import BADGE_ORDER, itinerary_key
 from backend.routing.fares import FareConfig
@@ -26,6 +29,17 @@ from backend.routing.weights import TripContext
 FIXTURE_PATH = Path(__file__).parent / "fixtures" / "jabodetabek_small.json"
 MAX_PLAN_SECONDS = 2.0
 JAMMED_SPEED_KMH = 5.0
+
+
+def run_plan(
+    graph: TransitGraph,
+    origin: Point,
+    destination: Point,
+    trip: TripContext,
+    access: AccessProvider,
+) -> list[Itinerary]:
+    """Jalankan `plan_trip` (async) dari test biasa, tanpa pytest-asyncio."""
+    return asyncio.run(plan_trip(graph, origin, destination, trip, access))
 
 
 @pytest.fixture(scope="module")
@@ -87,7 +101,7 @@ def test_scenario(
     scenario: Scenario, jabodetabek_graph: TransitGraph, trip: TripContext
 ) -> None:
     started = time.perf_counter()
-    itineraries = plan_trip(
+    itineraries = run_plan(
         jabodetabek_graph,
         scenario.origin,
         scenario.destination,
@@ -118,11 +132,12 @@ class FakeTrafficAccess:
     """Akses palsu: fallback haversine + kecepatan lalu lintas buatan per halte."""
 
     def __init__(self, speeds_kmh: dict[str, float]) -> None:
-        self.fallback = HaversineAccessProvider()
         self.speeds_kmh = speeds_kmh
 
-    def estimate(self, lat: float, lon: float, stop: Stop) -> AccessEstimate:
-        base = self.fallback.estimate(lat, lon, stop)
+    async def estimate(
+        self, lat: float, lon: float, stop: Stop, *, to_stop: bool = True
+    ) -> AccessEstimate:
+        base = haversine_estimate(lat, lon, stop)
         return apply_traffic(base, self.speeds_kmh.get(stop.id))
 
 
@@ -139,7 +154,7 @@ def _boarding_stops(itineraries: list[Itinerary]) -> set[str]:
 def test_no_reroute_without_jam(
     jabodetabek_graph: TransitGraph, trip: TripContext
 ) -> None:
-    itineraries = plan_trip(
+    itineraries = run_plan(
         jabodetabek_graph, JAM_ORIGIN, JAM_DESTINATION, trip, FakeTrafficAccess({})
     )
     assert _boarding_stops(itineraries) == {"CUK"}
@@ -150,9 +165,7 @@ def test_reroute_when_nearest_stop_jammed(
     jabodetabek_graph: TransitGraph, trip: TripContext
 ) -> None:
     access = FakeTrafficAccess({"CUK": JAMMED_SPEED_KMH})
-    itineraries = plan_trip(
-        jabodetabek_graph, JAM_ORIGIN, JAM_DESTINATION, trip, access
-    )
+    itineraries = run_plan(jabodetabek_graph, JAM_ORIGIN, JAM_DESTINATION, trip, access)
 
     assert _boarding_stops(itineraries) == {"KRI"}
     for itinerary in itineraries:
@@ -166,7 +179,7 @@ def test_no_candidates_returns_empty(
     jabodetabek_graph: TransitGraph, trip: TripContext
 ) -> None:
     middle_of_sea = Point(-5.90, 106.80)
-    itineraries = plan_trip(
+    itineraries = run_plan(
         jabodetabek_graph,
         middle_of_sea,
         JAM_DESTINATION,
@@ -180,7 +193,7 @@ def test_base_graph_not_modified(
     jabodetabek_graph: TransitGraph, trip: TripContext
 ) -> None:
     edge_count_before = sum(len(e) for e in jabodetabek_graph.edges_from.values())
-    plan_trip(
+    run_plan(
         jabodetabek_graph,
         SCENARIOS[0].origin,
         SCENARIOS[0].destination,

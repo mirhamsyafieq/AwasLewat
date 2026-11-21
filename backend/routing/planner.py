@@ -4,6 +4,7 @@ Alur: halte kandidat → perkiraan akses → graf request dengan node virtual �
 Dijkstra per kategori → itinerary → pesan pengalihan → dedupe.
 """
 
+import asyncio
 from collections.abc import Callable
 from dataclasses import dataclass
 
@@ -76,14 +77,24 @@ class RequestGraph:
         return self.base.outgoing(stop_id) + self.extra_edges_from.get(stop_id, [])
 
 
-def find_candidates(
-    graph: TransitGraph, point: Point, access: AccessProvider
+async def find_candidates(
+    graph: TransitGraph, point: Point, access: AccessProvider, *, to_stop: bool
 ) -> list[Candidate]:
-    """Halte terdekat (maks. 3 dalam 2 km) dari `point`, terurut dari yang terdekat."""
-    nearby = nearest_stops(graph.stops.values(), point.lat, point.lon)
+    """Halte terdekat (maks. 3 dalam 2 km) dari `point`, terurut dari yang terdekat.
+
+    Perkiraan akses ke semua kandidat diminta **bersamaan** (`asyncio.gather`),
+    jadi waktu tunggunya kira-kira sama dengan satu permintaan, bukan tiga.
+    `to_stop=True` untuk sisi awal (titik → halte), False untuk sisi tujuan.
+    """
+    nearby = [
+        stop for stop, _ in nearest_stops(graph.stops.values(), point.lat, point.lon)
+    ]
+    estimates = await asyncio.gather(
+        *(access.estimate(point.lat, point.lon, s, to_stop=to_stop) for s in nearby)
+    )
     return [
-        Candidate(stop, access.estimate(point.lat, point.lon, stop))
-        for stop, _ in nearby
+        Candidate(stop, estimate)
+        for stop, estimate in zip(nearby, estimates, strict=True)
     ]
 
 
@@ -153,7 +164,7 @@ def build_reroute_message(
     return REROUTE_SEPARATOR.join(present) if present else None
 
 
-def plan_trip(
+async def plan_trip(
     graph: TransitGraph,
     origin: Point,
     destination: Point,
@@ -162,11 +173,16 @@ def plan_trip(
 ) -> list[Itinerary]:
     """Cari rute dari `origin` ke `destination` untuk semua kategori.
 
+    Hanya pengambilan data akses yang `async` (menunggu jaringan). Dijkstra
+    berjalan biasa karena murni hitungan di memori.
+
     Mengembalikan daftar itinerary tanpa duplikat; kosong bila tidak ada halte
     dalam radius atau tujuan tidak terjangkau.
     """
-    origin_candidates = find_candidates(graph, origin, access)
-    destination_candidates = find_candidates(graph, destination, access)
+    origin_candidates, destination_candidates = await asyncio.gather(
+        find_candidates(graph, origin, access, to_stop=True),
+        find_candidates(graph, destination, access, to_stop=False),
+    )
     if not origin_candidates or not destination_candidates:
         return []
 
