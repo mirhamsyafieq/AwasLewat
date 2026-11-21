@@ -1,0 +1,6 @@
+# Alat pengembangan dan test (bukan untuk menjalankan server).
+# Dependency server (fastapi, httpx, pydantic, uvicorn) masuk ke requirements.txt.
+pytest==9.2.0
+ruff==0.17.6
+# Hanya dipakai di test untuk memvalidasi Dijkstra buatan sendiri.
+networkx==3.7
