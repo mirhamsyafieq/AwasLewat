@@ -1,0 +1,12 @@
+{
+  "krl_base_idr": 3000,
+  "krl_base_km": 25.0,
+  "krl_step_idr": 1000,
+  "krl_step_km": 10.0,
+  "tj_flat_idr": 3500,
+  "tj_morning_idr": 2000,
+  "tj_morning_start_hour": 5,
+  "tj_morning_end_hour": 7,
+  "tj_free_transfer_same_stop": true,
+  "mikrotrans_idr": 0
+}

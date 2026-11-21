@@ -1,0 +1,25 @@
+{
+  "_comment": "Graf mini untuk unit test (fiktif, bukan data asli). Semua segmen satu arah. K4 dan T1 berjarak ~314 m sehingga ada transfer jalan kaki di antaranya; pasangan halte lain berjarak > 400 m.",
+  "stops": [
+    {"id": "K1", "name": "Stasiun K1", "lat": -6.60, "lon": 106.80, "modes": ["krl"]},
+    {"id": "K2", "name": "Stasiun K2", "lat": -6.42, "lon": 106.82, "modes": ["krl"]},
+    {"id": "K3", "name": "Stasiun K3 (hub)", "lat": -6.25, "lon": 106.85, "modes": ["krl"]},
+    {"id": "K4", "name": "Stasiun K4", "lat": -6.21, "lon": 106.82, "modes": ["krl", "metrotrans"]},
+    {"id": "K5", "name": "Stasiun K5", "lat": -6.24, "lon": 106.95, "modes": ["krl"]},
+    {"id": "T1", "name": "Halte T1", "lat": -6.212, "lon": 106.822, "modes": ["brt", "mikrotrans"]},
+    {"id": "T2", "name": "Halte T2", "lat": -6.19, "lon": 106.823, "modes": ["brt"]},
+    {"id": "T3", "name": "Halte T3", "lat": -6.17, "lon": 106.827, "modes": ["brt", "metrotrans", "mikrotrans"]},
+    {"id": "T4", "name": "Halte T4", "lat": -6.19, "lon": 106.80, "modes": ["brt"]}
+  ],
+  "route_segments": [
+    {"route_id": "KRL-L1", "mode": "krl", "from_stop": "K1", "to_stop": "K2", "distance_km": 20.0, "travel_min": 25.0, "headway_min": 10.0},
+    {"route_id": "KRL-L1", "mode": "krl", "from_stop": "K2", "to_stop": "K3", "distance_km": 18.0, "travel_min": 22.0, "headway_min": 10.0},
+    {"route_id": "KRL-L1", "mode": "krl", "from_stop": "K3", "to_stop": "K4", "distance_km": 4.0, "travel_min": 6.0, "headway_min": 10.0},
+    {"route_id": "KRL-L2", "mode": "krl", "from_stop": "K5", "to_stop": "K3", "distance_km": 10.0, "travel_min": 12.0, "headway_min": 20.0},
+    {"route_id": "BRT-1", "mode": "brt", "from_stop": "T1", "to_stop": "T2", "distance_km": 2.0, "travel_min": 6.0, "headway_min": 6.0},
+    {"route_id": "BRT-1", "mode": "brt", "from_stop": "T2", "to_stop": "T3", "distance_km": 3.0, "travel_min": 8.0, "headway_min": 6.0},
+    {"route_id": "BRT-2", "mode": "brt", "from_stop": "T4", "to_stop": "T2", "distance_km": 2.5, "travel_min": 7.0, "headway_min": 8.0},
+    {"route_id": "MT-1", "mode": "metrotrans", "from_stop": "K4", "to_stop": "T3", "distance_km": 3.0, "travel_min": 15.0, "headway_min": 15.0},
+    {"route_id": "MK-1", "mode": "mikrotrans", "from_stop": "T1", "to_stop": "T3", "distance_km": 5.0, "travel_min": 20.0, "headway_min": 10.0}
+  ]
+}
