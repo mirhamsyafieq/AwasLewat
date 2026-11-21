@@ -1,0 +1,889 @@
+{
+ "_comment": "Dibuat oleh make_jabodetabek_small.py. Koordinat PERKIRAAN, bukan data asli; jangan dipakai untuk demo.",
+ "stops": [
+  {
+   "id": "BOO",
+   "name": "Bogor",
+   "lat": -6.5953,
+   "lon": 106.7906,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "CTA",
+   "name": "Citayam",
+   "lat": -6.4487,
+   "lon": 106.8025,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "DP",
+   "name": "Depok",
+   "lat": -6.4049,
+   "lon": 106.8173,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "DPB",
+   "name": "Depok Baru",
+   "lat": -6.3912,
+   "lon": 106.8217,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "UI",
+   "name": "Universitas Indonesia",
+   "lat": -6.3608,
+   "lon": 106.8318,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "PSM",
+   "name": "Pasar Minggu",
+   "lat": -6.2843,
+   "lon": 106.8445,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "TEB",
+   "name": "Tebet",
+   "lat": -6.2263,
+   "lon": 106.8583,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "MRI",
+   "name": "Manggarai",
+   "lat": -6.2099,
+   "lon": 106.8502,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "CKI",
+   "name": "Cikini",
+   "lat": -6.1987,
+   "lon": 106.8412,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "GDD",
+   "name": "Gondangdia",
+   "lat": -6.1859,
+   "lon": 106.8325,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "JUA",
+   "name": "Juanda",
+   "lat": -6.1667,
+   "lon": 106.8305,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "JAKK",
+   "name": "Jakarta Kota",
+   "lat": -6.1376,
+   "lon": 106.8146,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "BKS",
+   "name": "Bekasi",
+   "lat": -6.2361,
+   "lon": 106.9994,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "KRI",
+   "name": "Kranji",
+   "lat": -6.2244,
+   "lon": 106.9794,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "CUK",
+   "name": "Cakung",
+   "lat": -6.219,
+   "lon": 106.952,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "KLD",
+   "name": "Klender",
+   "lat": -6.2135,
+   "lon": 106.8996,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "JNG",
+   "name": "Jatinegara",
+   "lat": -6.215,
+   "lon": 106.8703,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "SUD",
+   "name": "Sudirman",
+   "lat": -6.2023,
+   "lon": 106.8233,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "KAT",
+   "name": "Karet",
+   "lat": -6.2008,
+   "lon": 106.816,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "THB",
+   "name": "Tanah Abang",
+   "lat": -6.1857,
+   "lon": 106.8108,
+   "modes": [
+    "krl"
+   ]
+  },
+  {
+   "id": "TJ-BLM",
+   "name": "Halte Blok M",
+   "lat": -6.2433,
+   "lon": 106.8007,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-MAG",
+   "name": "Halte Masjid Agung",
+   "lat": -6.2357,
+   "lon": 106.7986,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-BSN",
+   "name": "Halte Bundaran Senayan",
+   "lat": -6.2273,
+   "lon": 106.8017,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-GBK",
+   "name": "Halte Gelora Bung Karno",
+   "lat": -6.224,
+   "lon": 106.8059,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-PMJ",
+   "name": "Halte Polda Metro Jaya",
+   "lat": -6.221,
+   "lon": 106.8106,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-BNH",
+   "name": "Halte Bendungan Hilir",
+   "lat": -6.2152,
+   "lon": 106.8178,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-DKA",
+   "name": "Halte Dukuh Atas",
+   "lat": -6.2048,
+   "lon": 106.8226,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-TSR",
+   "name": "Halte Tosari",
+   "lat": -6.1971,
+   "lon": 106.8231,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-BHI",
+   "name": "Halte Bundaran HI",
+   "lat": -6.1923,
+   "lon": 106.8228,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-SRN",
+   "name": "Halte Sarinah",
+   "lat": -6.1876,
+   "lon": 106.8234,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-BI",
+   "name": "Halte Bank Indonesia",
+   "lat": -6.1826,
+   "lon": 106.8226,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-MNS",
+   "name": "Halte Monas",
+   "lat": -6.1765,
+   "lon": 106.8228,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-HRM",
+   "name": "Halte Harmoni",
+   "lat": -6.1655,
+   "lon": 106.8202,
+   "modes": [
+    "brt"
+   ]
+  },
+  {
+   "id": "TJ-KOT",
+   "name": "Halte Kota",
+   "lat": -6.1375,
+   "lon": 106.8133,
+   "modes": [
+    "brt"
+   ]
+  }
+ ],
+ "route_segments": [
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "BOO",
+   "to_stop": "CTA",
+   "distance_km": 17.99,
+   "travel_min": 26.98,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "CTA",
+   "to_stop": "DP",
+   "distance_km": 5.651,
+   "travel_min": 8.48,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "DP",
+   "to_stop": "DPB",
+   "distance_km": 1.759,
+   "travel_min": 2.64,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "DPB",
+   "to_stop": "UI",
+   "distance_km": 3.916,
+   "travel_min": 5.87,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "UI",
+   "to_stop": "PSM",
+   "distance_km": 9.484,
+   "travel_min": 14.23,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "PSM",
+   "to_stop": "TEB",
+   "distance_km": 7.29,
+   "travel_min": 10.93,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "TEB",
+   "to_stop": "MRI",
+   "distance_km": 2.235,
+   "travel_min": 3.35,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "MRI",
+   "to_stop": "CKI",
+   "distance_km": 1.753,
+   "travel_min": 2.63,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "CKI",
+   "to_stop": "GDD",
+   "distance_km": 1.89,
+   "travel_min": 2.83,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "GDD",
+   "to_stop": "JUA",
+   "distance_km": 2.361,
+   "travel_min": 3.54,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:0",
+   "mode": "krl",
+   "from_stop": "JUA",
+   "to_stop": "JAKK",
+   "distance_km": 4.051,
+   "travel_min": 6.08,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "JAKK",
+   "to_stop": "JUA",
+   "distance_km": 4.051,
+   "travel_min": 6.08,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "JUA",
+   "to_stop": "GDD",
+   "distance_km": 2.361,
+   "travel_min": 3.54,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "GDD",
+   "to_stop": "CKI",
+   "distance_km": 1.89,
+   "travel_min": 2.83,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "CKI",
+   "to_stop": "MRI",
+   "distance_km": 1.753,
+   "travel_min": 2.63,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "MRI",
+   "to_stop": "TEB",
+   "distance_km": 2.235,
+   "travel_min": 3.35,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "TEB",
+   "to_stop": "PSM",
+   "distance_km": 7.29,
+   "travel_min": 10.93,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "PSM",
+   "to_stop": "UI",
+   "distance_km": 9.484,
+   "travel_min": 14.23,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "UI",
+   "to_stop": "DPB",
+   "distance_km": 3.916,
+   "travel_min": 5.87,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "DPB",
+   "to_stop": "DP",
+   "distance_km": 1.759,
+   "travel_min": 2.64,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "DP",
+   "to_stop": "CTA",
+   "distance_km": 5.651,
+   "travel_min": 8.48,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-BOGOR:1",
+   "mode": "krl",
+   "from_stop": "CTA",
+   "to_stop": "BOO",
+   "distance_km": 17.99,
+   "travel_min": 26.98,
+   "headway_min": 10.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "BKS",
+   "to_stop": "KRI",
+   "distance_km": 2.822,
+   "travel_min": 4.23,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "KRI",
+   "to_stop": "CUK",
+   "distance_km": 3.397,
+   "travel_min": 5.09,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "CUK",
+   "to_stop": "KLD",
+   "distance_km": 6.407,
+   "travel_min": 9.61,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "KLD",
+   "to_stop": "JNG",
+   "distance_km": 3.567,
+   "travel_min": 5.35,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "JNG",
+   "to_stop": "MRI",
+   "distance_km": 2.522,
+   "travel_min": 3.78,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "MRI",
+   "to_stop": "SUD",
+   "distance_km": 3.401,
+   "travel_min": 5.1,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "SUD",
+   "to_stop": "KAT",
+   "distance_km": 0.906,
+   "travel_min": 1.36,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:0",
+   "mode": "krl",
+   "from_stop": "KAT",
+   "to_stop": "THB",
+   "distance_km": 1.952,
+   "travel_min": 2.93,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "THB",
+   "to_stop": "KAT",
+   "distance_km": 1.952,
+   "travel_min": 2.93,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "KAT",
+   "to_stop": "SUD",
+   "distance_km": 0.906,
+   "travel_min": 1.36,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "SUD",
+   "to_stop": "MRI",
+   "distance_km": 3.401,
+   "travel_min": 5.1,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "MRI",
+   "to_stop": "JNG",
+   "distance_km": 2.522,
+   "travel_min": 3.78,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "JNG",
+   "to_stop": "KLD",
+   "distance_km": 3.567,
+   "travel_min": 5.35,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "KLD",
+   "to_stop": "CUK",
+   "distance_km": 6.407,
+   "travel_min": 9.61,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "CUK",
+   "to_stop": "KRI",
+   "distance_km": 3.397,
+   "travel_min": 5.09,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "KRL-CIKARANG:1",
+   "mode": "krl",
+   "from_stop": "KRI",
+   "to_stop": "BKS",
+   "distance_km": 2.822,
+   "travel_min": 4.23,
+   "headway_min": 15.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-BLM",
+   "to_stop": "TJ-MAG",
+   "distance_km": 1.052,
+   "travel_min": 3.15,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-MAG",
+   "to_stop": "TJ-BSN",
+   "distance_km": 1.194,
+   "travel_min": 3.58,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-BSN",
+   "to_stop": "TJ-GBK",
+   "distance_km": 0.71,
+   "travel_min": 2.13,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-GBK",
+   "to_stop": "TJ-PMJ",
+   "distance_km": 0.741,
+   "travel_min": 2.22,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-PMJ",
+   "to_stop": "TJ-BNH",
+   "distance_km": 1.229,
+   "travel_min": 3.69,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-BNH",
+   "to_stop": "TJ-DKA",
+   "distance_km": 1.527,
+   "travel_min": 4.58,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-DKA",
+   "to_stop": "TJ-TSR",
+   "distance_km": 1.03,
+   "travel_min": 3.09,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-TSR",
+   "to_stop": "TJ-BHI",
+   "distance_km": 0.642,
+   "travel_min": 1.93,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-BHI",
+   "to_stop": "TJ-SRN",
+   "distance_km": 0.632,
+   "travel_min": 1.9,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-SRN",
+   "to_stop": "TJ-BI",
+   "distance_km": 0.676,
+   "travel_min": 2.03,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-BI",
+   "to_stop": "TJ-MNS",
+   "distance_km": 0.814,
+   "travel_min": 2.44,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-MNS",
+   "to_stop": "TJ-HRM",
+   "distance_km": 1.508,
+   "travel_min": 4.52,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:0",
+   "mode": "brt",
+   "from_stop": "TJ-HRM",
+   "to_stop": "TJ-KOT",
+   "distance_km": 3.847,
+   "travel_min": 11.54,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-KOT",
+   "to_stop": "TJ-HRM",
+   "distance_km": 3.847,
+   "travel_min": 11.54,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-HRM",
+   "to_stop": "TJ-MNS",
+   "distance_km": 1.508,
+   "travel_min": 4.52,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-MNS",
+   "to_stop": "TJ-BI",
+   "distance_km": 0.814,
+   "travel_min": 2.44,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-BI",
+   "to_stop": "TJ-SRN",
+   "distance_km": 0.676,
+   "travel_min": 2.03,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-SRN",
+   "to_stop": "TJ-BHI",
+   "distance_km": 0.632,
+   "travel_min": 1.9,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-BHI",
+   "to_stop": "TJ-TSR",
+   "distance_km": 0.642,
+   "travel_min": 1.93,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-TSR",
+   "to_stop": "TJ-DKA",
+   "distance_km": 1.03,
+   "travel_min": 3.09,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-DKA",
+   "to_stop": "TJ-BNH",
+   "distance_km": 1.527,
+   "travel_min": 4.58,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-BNH",
+   "to_stop": "TJ-PMJ",
+   "distance_km": 1.229,
+   "travel_min": 3.69,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-PMJ",
+   "to_stop": "TJ-GBK",
+   "distance_km": 0.741,
+   "travel_min": 2.22,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-GBK",
+   "to_stop": "TJ-BSN",
+   "distance_km": 0.71,
+   "travel_min": 2.13,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-BSN",
+   "to_stop": "TJ-MAG",
+   "distance_km": 1.194,
+   "travel_min": 3.58,
+   "headway_min": 5.0
+  },
+  {
+   "route_id": "TJ-1:1",
+   "mode": "brt",
+   "from_stop": "TJ-MAG",
+   "to_stop": "TJ-BLM",
+   "distance_km": 1.052,
+   "travel_min": 3.15,
+   "headway_min": 5.0
+  }
+ ]
+}
