@@ -19,6 +19,8 @@ from backend.routing.weights import (
     TripContext,
     cheapest_step,
     fastest_step,
+    fewest_transfers_step,
+    least_crowded_step,
 )
 
 ORIGIN_ID = "__origin__"
@@ -27,10 +29,13 @@ DESTINATION_ID = "__destination__"
 REROUTE_TEMPLATE = "Dialihkan via {chosen} untuk menghindari macet di sekitar {nearest}"
 REROUTE_SEPARATOR = "; "
 
-# Kategori yang dicari: (badge, pembuat step function). F4.2 menambah dua lagi.
+# Kategori yang dicari: (badge, pembuat step function). Badge harus ada di
+# dedupe.BADGE_ORDER.
 CATEGORIES: tuple[tuple[str, Callable[[TripContext], StepFunction]], ...] = (
     ("fastest", fastest_step),
     ("cheapest", cheapest_step),
+    ("fewest_transfers", fewest_transfers_step),
+    ("least_crowded", least_crowded_step),
 )
 
 

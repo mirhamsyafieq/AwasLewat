@@ -16,7 +16,7 @@ from backend.routing.access import (
     HaversineAccessProvider,
     apply_traffic,
 )
-from backend.routing.dedupe import itinerary_key
+from backend.routing.dedupe import BADGE_ORDER, itinerary_key
 from backend.routing.fares import FareConfig
 from backend.routing.graph import TransitGraph, build_graph, load_network
 from backend.routing.models import Itinerary, Stop
@@ -103,7 +103,8 @@ def test_scenario(
     assert len(keys) == len(set(keys)), "tidak boleh ada kartu duplikat"
 
     all_badges = [badge for it in itineraries for badge in it.badges]
-    assert sorted(all_badges) == ["cheapest", "fastest"]
+    # Tiap kategori menghasilkan tepat satu badge, tersebar di kartu yang ada.
+    assert sorted(all_badges) == sorted(BADGE_ORDER)
 
     for itinerary in itineraries:
         assert_valid_itinerary(itinerary)

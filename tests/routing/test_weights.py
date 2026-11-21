@@ -9,8 +9,11 @@ from backend.routing.weights import (
     BUS_PEAK_MULTIPLIER,
     FARE_WEIGHT,
     TripContext,
+    boarding_penalty,
     cheapest_step,
     fastest_step,
+    fewest_transfers_step,
+    least_crowded_step,
     pending_krl_fare,
     step_fare,
     traffic_multiplier,
@@ -109,10 +112,18 @@ def test_cheapest_step_puts_rupiah_before_minutes(trip: TripContext) -> None:
     assert cost == 5_000 * FARE_WEIGHT + 4.0
 
 
+def test_boarding_penalty_only_when_boarding() -> None:
+    assert boarding_penalty(AT_A_ON_FOOT, KRL_EDGE, 10.0) == 10.0  # naik pertama
+    assert boarding_penalty(AT_A_ON_KRL_L2, KRL_EDGE, 10.0) == 10.0  # ganti jalur
+    assert boarding_penalty(AT_A_ON_KRL_L1, KRL_EDGE, 10.0) == 0.0  # tetap di kereta
+    assert boarding_penalty(AT_A_ON_KRL_L1, WALK_EDGE, 10.0) == 0.0  # turun, jalan
+
+
 def test_all_step_costs_non_negative(trip: TripContext) -> None:
     edges = [KRL_EDGE, BRT_EDGE, METROTRANS_EDGE, WALK_EDGE, DRIVE_EDGE]
     states = [AT_A_ON_FOOT, AT_A_ON_KRL_L1, AT_A_ON_KRL_L2]
-    for make_step in (fastest_step, cheapest_step):
+    all_steps = (fastest_step, cheapest_step, fewest_transfers_step, least_crowded_step)
+    for make_step in all_steps:
         step = make_step(trip)
         for state in states:
             for edge in edges:

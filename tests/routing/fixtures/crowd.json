@@ -1,0 +1,6 @@
+{
+  "peak_hours": [6, 7, 8, 16, 17, 18, 19],
+  "peak_by_mode": {"krl": 2.0, "brt": 1.8, "metrotrans": 1.3, "mikrotrans": 1.3},
+  "off_peak_by_mode": {"krl": 1.0, "brt": 1.0, "metrotrans": 1.0, "mikrotrans": 1.0},
+  "route_overrides": {"KRL-BOGOR:0": [2.5, 1.2]}
+}

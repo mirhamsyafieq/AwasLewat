@@ -8,8 +8,9 @@ step function ini.
 """
 
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
+from backend.routing.crowd import CrowdConfig, crowd_multiplier
 from backend.routing.fares import FareConfig, krl_fare, tj_fare
 from backend.routing.graph import KrlDistanceTable
 from backend.routing.models import (
@@ -36,6 +37,14 @@ TJ_MODES = frozenset({"brt", "metrotrans"})
 # waktu hanya menjadi tie-break dan tidak pernah mengalahkan selisih Rp1.
 FARE_WEIGHT = 1_000
 
+# --- Paling sedikit transit & paling lengang ---
+# Penalti diberikan setiap kali NAIK kendaraan (lihat `boarding_penalty`).
+# Paling sedikit transit: 10.000 jauh lebih besar dari durasi perjalanan mana pun,
+# jadi satu transit lebih sedikit selalu menang; waktu hanya tie-break.
+TRANSFER_PENALTY = 10_000
+# Paling lengang: penalti kecil agar rute tidak berputar-putar lewat jalur sepi.
+LEAST_CROWDED_TRANSFER_PENALTY_MIN = 5.0
+
 StepFunction = Callable[[SearchState, Edge], tuple[float, FareZone | None]]
 
 
@@ -47,11 +56,13 @@ class TripContext:
     dipakai untuk seluruh perjalanan (tarif pagi TJ, pengali macet bus).
     `krl_km_between` = tabel jarak KRL terpendek dari graf
     (`TransitGraph.krl_km_between`), dipakai untuk tarif KRL saat tap-out.
+    `crowd` = tabel kepadatan untuk kategori paling lengang.
     """
 
     hour: int
     fare_config: FareConfig
     krl_km_between: KrlDistanceTable
+    crowd: CrowdConfig = field(default_factory=CrowdConfig)
 
 
 def is_boarding(state: SearchState, edge: Edge) -> bool:
@@ -170,5 +181,53 @@ def cheapest_step(trip: TripContext) -> StepFunction:
     def step(state: SearchState, edge: Edge) -> tuple[float, FareZone | None]:
         rupiah, zone = step_fare(state, edge, trip)
         return rupiah * FARE_WEIGHT + step_minutes(state, edge, trip), zone
+
+    return step
+
+
+def boarding_penalty(state: SearchState, edge: Edge, penalty: float) -> float:
+    """`penalty` bila edge ini berarti naik kendaraan, selain itu 0.
+
+    Kenapa per NAIK, bukan per GANTI? State hanya tahu rute yang sedang dinaiki;
+    setelah jalan kaki `route_id` kembali None, sehingga KRL → jalan → BRT tidak
+    terdeteksi sebagai ganti rute. Karena transit = jumlah naik − 1, memberi
+    penalti per naik sama dengan penalti per transit ditambah satu penalti
+    konstan untuk semua rute yang naik kendaraan. Urutan rute tidak berubah,
+    dan state tidak perlu ditambah.
+    """
+    if is_boarding(state, edge):
+        return penalty
+    return 0.0
+
+
+def fewest_transfers_step(trip: TripContext) -> StepFunction:
+    """Step function paling sedikit transit: biaya = penalti per naik + menit."""
+
+    def step(state: SearchState, edge: Edge) -> tuple[float, FareZone | None]:
+        penalty = boarding_penalty(state, edge, TRANSFER_PENALTY)
+        return penalty + step_minutes(state, edge, trip), None
+
+    return step
+
+
+def crowded_ride_minutes(edge: Edge, trip: TripContext) -> float:
+    """Waktu di perjalanan (sudah termasuk macet) dikali pengali kepadatan."""
+    multiplier = crowd_multiplier(trip.crowd, edge.route_id, edge.mode, trip.hour)
+    return ride_minutes(edge, trip) * multiplier
+
+
+def least_crowded_step(trip: TripContext) -> StepFunction:
+    """Step function paling lengang.
+
+    Biaya = waktu tunggu + waktu perjalanan × pengali kepadatan + penalti per naik.
+    """
+
+    def step(state: SearchState, edge: Edge) -> tuple[float, FareZone | None]:
+        cost = (
+            wait_minutes(state, edge)
+            + crowded_ride_minutes(edge, trip)
+            + boarding_penalty(state, edge, LEAST_CROWDED_TRANSFER_PENALTY_MIN)
+        )
+        return cost, None
 
     return step

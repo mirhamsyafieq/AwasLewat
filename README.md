@@ -20,7 +20,7 @@ Komuter yang menggabungkan KRL dan Transjakarta harus berpindah-pindah aplikasi 
 | Jalur KRL dan koridor Transjakarta dengan warna resmi | Direncanakan |
 | Pencarian jalur, halte, dan tempat umum | Direncanakan |
 | Rute tercepat dan termurah dari titik mana pun | Mesin rute selesai (dengan data uji); endpoint `/route` menyusul |
-| Rute paling sedikit transit dan paling lengang | Direncanakan |
+| Rute paling sedikit transit dan paling lengang | Mesin rute selesai (dengan data uji dan tabel kepadatan sementara) |
 | Pengalihan halte naik/turun saat akses macet parah | Logika selesai (dengan data simulasi); klien OSRM/TomTom menyusul |
 | Penggabungan hasil rute yang sama menjadi satu kartu | Selesai |
 | Alarm tujuan yang tetap berbunyi saat HP dalam mode senyap | Direncanakan |
@@ -70,6 +70,8 @@ Modul `backend/routing/` mencari rute dari titik sembarang ke titik sembarang.
 5. **Fungsi biaya per kategori.**
    - Tercepat: waktu tempuh × pengali macet + waktu tunggu.
    - Termurah: total tarif, dengan waktu sebagai penentu bila tarif sama.
+   - Paling sedikit transit: penalti besar setiap naik kendaraan, ditambah waktu.
+   - Paling lengang: waktu perjalanan × pengali kepadatan per jam, ditambah waktu tunggu.
 6. **Deduplikasi.** Rute dengan urutan naik/turun kendaraan yang sama digabung menjadi satu kartu dengan beberapa badge.
 
 ### Aturan tarif yang dipakai
